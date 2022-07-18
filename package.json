@@ -1,0 +1,24 @@
+{
+  "name": "weather-canada-telegraf-influxdb-grafana",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "deploy": "git add . && git commit -m Build && git push",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ndbeals/weathercanada-influxdb.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ndbeals/weathercanada-influxdb/issues"
+  },
+  "homepage": "https://github.com/ndbeals/weathercanada-influxdb#readme"
+}

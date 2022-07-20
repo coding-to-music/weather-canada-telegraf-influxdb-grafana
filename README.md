@@ -87,7 +87,12 @@ nc -z -v <IP-ADDRESS> 1-65535 2>&1 | grep -v 'Connection refused'
 
 ```
 docker-compose up
+
 docker-compose down
+
+docker-compose up --remove-orphans
+
+docker-compose restart grafana
 
 docker ps
 

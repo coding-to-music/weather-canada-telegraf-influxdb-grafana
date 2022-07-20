@@ -27,14 +27,14 @@ services:
   #       - ./config.ini:/src/config.ini
   #     # restart: always
 
-  hddtemp:
-    image: drewster727/hddtemp-docker
-    container_name: hddtemp
-    hostname: homeserver
-    privileged: true
-    environment:
-      HDDTEMP_ARGS: "-q -d -F /dev/sd*"
-      TZ: "America/Chicago"
+  # hddtemp:
+  #   image: drewster727/hddtemp-docker
+  #   container_name: hddtemp
+  #   hostname: homeserver
+  #   privileged: true
+  #   environment:
+  #     HDDTEMP_ARGS: "-q -d -F /dev/sd*"
+  #     TZ: "America/Chicago"
 
   #   telegraf:
   #     image: telegraf:latest
@@ -86,13 +86,16 @@ services:
     container_name: grafana
     hostname: homeserver
     environment:
-      GF_INSTALL_PLUGINS: snuids-radar-panel 1.4.4, grafana-piechart-panel 1.4.0, grafana-worldmap-panel 0.2.1, vonage-status-panel 1.0.9, natel-discrete-panel, briangann-gauge-panel, jdbranham-diagram-panel, grafana-simple-json-datasource
+      - GF_INSTALL_PLUGINS=snuids-radar-panel 1.4.4, grafana-piechart-panel 1.4.0, grafana-worldmap-panel 0.2.1, vonage-status-panel 1.0.9, natel-discrete-panel, briangann-gauge-panel, jdbranham-diagram-panel, grafana-simple-json-datasource
+      - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
+      - GF_AUTH_ANONYMOUS_ENABLED=true
+      - GF_AUTH_BASIC_ENABLED=false
+      - GF_SERVER_SERVE_FROM_SUB_PATH=true
     ports:
-      - 3001:3000
+      - 3000:3000
     volumes:
       - grafana_data:/var/lib/grafana
     # restart: always
-
 volumes:
   influxdb_data:
   chronograf_data:

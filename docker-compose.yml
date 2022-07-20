@@ -60,7 +60,8 @@ services:
   #       - /:/host/root:ro
 
   influxdb:
-    image: influxdb:2.3
+    # image: influxdb:2.3
+    image: influxdb:latest
     container_name: influxdb
     hostname: homeserver
     environment:
@@ -71,7 +72,8 @@ services:
       - 8086:8086
     # restart: always
   chronograf:
-    image: chronograf:1.9
+    # image: chronograf:1.9
+    image: chronograf:latest
     container_name: chronograf
     hostname: homeserver
     volumes:

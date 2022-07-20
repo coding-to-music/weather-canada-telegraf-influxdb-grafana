@@ -68,7 +68,7 @@ services:
     volumes:
       - influxdb_data:/var/lib/influxdb
     ports:
-      - 192.168.0.11:8086:8086
+      - 8086:8086
     # restart: always
   chronograf:
     image: chronograf:1.5
@@ -77,7 +77,7 @@ services:
     volumes:
       - chronograf_data:/var/lib/chronograf
     ports:
-      - 192.168.0.11:8087:8888
+      - 8087:8888
     # restart: always
   grafana:
     image: grafana/grafana
@@ -86,7 +86,7 @@ services:
     environment:
       GF_INSTALL_PLUGINS: snuids-radar-panel 1.4.4, grafana-piechart-panel 1.4.0, grafana-worldmap-panel 0.2.1, vonage-status-panel 1.0.9, natel-discrete-panel, briangann-gauge-panel, jdbranham-diagram-panel, grafana-simple-json-datasource
     ports:
-      - 192.168.0.11:3001:3000
+      - 3001:3000
     volumes:
       - grafana_data:/var/lib/grafana
     # restart: always

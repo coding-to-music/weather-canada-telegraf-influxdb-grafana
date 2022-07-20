@@ -1,31 +1,31 @@
 version: "3"
 services:
-  weathercan-python:
-    # image: python:3.8
+  # weathercan-python:
+  #   # image: python:3.8
 
-    build:
-      context: ./
-      dockerfile: ./docker/Dockerfile
-    container_name: weathercan-python
-    # restart: unless-stopped
-    # tmpfs: "true"
-    environment:
-      ENV: "production"
-    volumes:
-      - ./:/opt/weather
-    # command: bash -c "pip install pipenv && cd /opt && pipenv install && pipenv run weathercanada_atom"
+  #   build:
+  #     context: ./
+  #     dockerfile: ./docker/Dockerfile
+  #   container_name: weathercan-python
+  #   # restart: unless-stopped
+  #   # tmpfs: "true"
+  #   environment:
+  #     ENV: "production"
+  #   volumes:
+  #     - ./:/opt/weather
+  # command: bash -c "pip install pipenv && cd /opt && pipenv install && pipenv run weathercanada_atom"
   # weathercan-postgres:
   # images: postgres:12
   # container_name: weathercan-postgres
   # ports:
   #     -
-  speedtest:
-    image: barrycarey/speedtest-for-influxdb-and-grafana
-    container_name: speedtest
-    hostname: homeserver
-    volumes:
-      - ./config.ini:/src/config.ini
-    # restart: always
+  #   speedtest:
+  #     image: barrycarey/speedtest-for-influxdb-and-grafana
+  #     container_name: speedtest
+  #     hostname: homeserver
+  #     volumes:
+  #       - ./config.ini:/src/config.ini
+  #     # restart: always
 
   hddtemp:
     image: drewster727/hddtemp-docker
@@ -36,31 +36,31 @@ services:
       HDDTEMP_ARGS: "-q -d -F /dev/sd*"
       TZ: "America/Chicago"
 
-  telegraf:
-    image: telegraf:latest
-    container_name: telegraf
-    hostname: homeserver
-    privileged: true
-    # restart: unless-stopped
-    links:
-      - influxdb
-    environment:
-      HOST_PROC: /host/proc
-      HOST_SYS: /host/sys
-      HOST_ETC: /host/etc
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock:ro
-      - /sys:/host/sys:ro
-      - /proc:/host/proc:ro
-      - /etc:/host/etc:ro
-      - ./telegraf.conf:/etc/telegraf/telegraf.conf:ro
-      - /data/zp01:/data/zp01
-      - /data/zp02:/data/zp02
-      - /data/zp03:/data/zp03
-      - /:/host/root:ro
+  #   telegraf:
+  #     image: telegraf:latest
+  #     container_name: telegraf
+  #     hostname: homeserver
+  #     privileged: true
+  #     # restart: unless-stopped
+  #     links:
+  #       - influxdb
+  #     environment:
+  #       HOST_PROC: /host/proc
+  #       HOST_SYS: /host/sys
+  #       HOST_ETC: /host/etc
+  #     volumes:
+  #       - /var/run/docker.sock:/var/run/docker.sock:ro
+  #       - /sys:/host/sys:ro
+  #       - /proc:/host/proc:ro
+  #       - /etc:/host/etc:ro
+  #       - ./telegraf.conf:/etc/telegraf/telegraf.conf:ro
+  #       - /data/zp01:/data/zp01
+  #       - /data/zp02:/data/zp02
+  #       - /data/zp03:/data/zp03
+  #       - /:/host/root:ro
 
   influxdb:
-    image: influxdb:1.5
+    image: influxdb:2.3
     container_name: influxdb
     hostname: homeserver
     environment:
@@ -71,7 +71,7 @@ services:
       - 8086:8086
     # restart: always
   chronograf:
-    image: chronograf:1.5
+    image: chronograf:1.9
     container_name: chronograf
     hostname: homeserver
     volumes:

@@ -57,3 +57,38 @@ Removing chronograf        ... done
 Removing hddtemp           ... done
 Removing network weather-canada-telegraf-influxdb-grafana_default
 ```
+
+## checking ports and who uses them
+
+https://linuxhandbook.com/check-open-ports-linux/
+
+```
+sudo netstat -nlp
+```
+
+```java
+sudo lsof -i
+
+sudo lsof -i -P -n
+
+sudo lsof -i -P -n | grep LISTEN
+
+nc -z -v <IP-ADDRESS> 1-65535 2>&1 | grep -v 'Connection refused'
+
+sudo netstat -lptu
+
+sudo netstat -tulpn
+
+nc -z -v <IP-ADDRESS> 1-65535 2>&1 | grep -v 'Connection refused'
+
+```
+
+```
+
+```
+
+Output
+
+```java
+
+```

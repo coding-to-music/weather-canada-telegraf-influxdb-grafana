@@ -8,6 +8,8 @@ From / By Nathan Beals https://github.com/ndbeals
 
 https://github.com/ndbeals/weathercanada-influxdb
 
+https://github.com/barrycarey/Speedtest-for-InfluxDB-and-Grafana
+
 ## Environment variables:
 
 ```java

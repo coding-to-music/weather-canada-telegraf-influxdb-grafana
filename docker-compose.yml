@@ -19,13 +19,6 @@ services:
   # container_name: weathercan-postgres
   # ports:
   #     -
-  #   speedtest:
-  #     image: barrycarey/speedtest-for-influxdb-and-grafana
-  #     container_name: speedtest
-  #     hostname: homeserver
-  #     volumes:
-  #       - ./config.ini:/src/config.ini
-  #     # restart: always
 
   # hddtemp:
   #   image: drewster727/hddtemp-docker
@@ -58,6 +51,13 @@ services:
   #       - /data/zp02:/data/zp02
   #       - /data/zp03:/data/zp03
   #       - /:/host/root:ro
+  speedtest:
+    image: barrycarey/speedtest-for-influxdb-and-grafana
+    container_name: speedtest
+    hostname: homeserver
+    # volumes:
+    #   - ./config.ini:/src/config.ini
+    # restart: always
 
   influxdb:
     # image: influxdb:2.3
@@ -82,11 +82,11 @@ services:
       - 8087:8888
     # restart: always
   grafana:
-    image: grafana/grafana
+    image: thomasconnors/grafana-custom
     container_name: grafana
     hostname: homeserver
     environment:
-      - GF_INSTALL_PLUGINS=snuids-radar-panel 1.4.4, grafana-piechart-panel 1.4.0, grafana-worldmap-panel 0.2.1, vonage-status-panel 1.0.9, natel-discrete-panel, briangann-gauge-panel, jdbranham-diagram-panel, grafana-simple-json-datasource
+      # - GF_INSTALL_PLUGINS=snuids-radar-panel 1.4.4, grafana-piechart-panel 1.4.0, grafana-worldmap-panel 0.2.1, vonage-status-panel 1.0.9, natel-discrete-panel, briangann-gauge-panel, jdbranham-diagram-panel, grafana-simple-json-datasource
       - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
       - GF_AUTH_ANONYMOUS_ENABLED=true
       - GF_AUTH_BASIC_ENABLED=false

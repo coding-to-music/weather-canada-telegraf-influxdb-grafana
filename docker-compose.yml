@@ -51,13 +51,13 @@ services:
   #       - /data/zp02:/data/zp02
   #       - /data/zp03:/data/zp03
   #       - /:/host/root:ro
-  speedtest:
-    image: barrycarey/speedtest-for-influxdb-and-grafana
-    container_name: speedtest
-    hostname: homeserver
-    # volumes:
-    #   - ./config.ini:/src/config.ini
-    # restart: always
+  # speedtest:
+  #   image: barrycarey/speedtest-for-influxdb-and-grafana
+  #   container_name: speedtest
+  #   hostname: homeserver
+  #   volumes:
+  #     - ./config.ini:/speedtest/config.ini
+  #   # restart: always
 
   influxdb:
     # image: influxdb:2.3

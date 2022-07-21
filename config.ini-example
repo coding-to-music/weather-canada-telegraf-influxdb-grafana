@@ -2,7 +2,7 @@
 Delay = 300
 
 [INFLUXDB]
-Address =
+Address = $(INFLUXDB_ADDRESS)
 Port = 8086
 Database = speedtests
 Username =

@@ -51,13 +51,13 @@ services:
   #       - /data/zp02:/data/zp02
   #       - /data/zp03:/data/zp03
   #       - /:/host/root:ro
-  # speedtest:
-  #   image: barrycarey/speedtest-for-influxdb-and-grafana
-  #   container_name: speedtest
-  #   hostname: homeserver
-  #   volumes:
-  #     - ./config.ini:/speedtest/config.ini
-  #   # restart: always
+  speedtest:
+    image: barrycarey/speedtest-for-influxdb-and-grafana
+    container_name: speedtest
+    hostname: homeserver
+    volumes:
+      - ./config.ini:/speedtest/config.ini
+    # restart: always
 
   influxdb:
     # image: influxdb:2.3
@@ -65,7 +65,10 @@ services:
     container_name: influxdb
     hostname: homeserver
     environment:
-      INFLUXDB_DATA_CACHE_SNAPSHOT_WRITE_COLD_DURATION: 25m
+      - INFLUXDB_DATA_CACHE_SNAPSHOT_WRITE_COLD_DURATION= 25m
+      - INFLUXDB_DB=speedtests
+      - INFLUXDB_ADMIN_USER=admin
+      - INFLUXDB_ADMIN_PASSWORD=adminpass
     volumes:
       - influxdb_data:/var/lib/influxdb
     ports:
@@ -81,6 +84,8 @@ services:
     ports:
       - 8087:8888
     # restart: always
+    depends_on:
+      - influxdb
   grafana:
     image: thomasconnors/grafana-custom
     container_name: grafana
@@ -96,6 +101,8 @@ services:
     volumes:
       - grafana_data:/var/lib/grafana
     # restart: always
+    depends_on:
+      - influxdb
 volumes:
   influxdb_data:
   chronograf_data:

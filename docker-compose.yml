@@ -1,4 +1,4 @@
-version: "3"
+version: "2"
 services:
   # weathercan-python:
   #   # image: python:3.8
@@ -18,7 +18,7 @@ services:
   # images: postgres:12
   # container_name: weathercan-postgres
   # ports:
-  #     -
+  #   -
 
   # hddtemp:
   #   image: drewster727/hddtemp-docker

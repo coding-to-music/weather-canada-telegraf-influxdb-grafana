@@ -29,35 +29,36 @@ services:
   #     HDDTEMP_ARGS: "-q -d -F /dev/sd*"
   #     TZ: "America/Chicago"
 
-  #   telegraf:
-  #     image: telegraf:latest
-  #     container_name: telegraf
-  #     hostname: homeserver
-  #     privileged: true
-  #     # restart: unless-stopped
-  #     links:
-  #       - influxdb
-  #     environment:
-  #       HOST_PROC: /host/proc
-  #       HOST_SYS: /host/sys
-  #       HOST_ETC: /host/etc
-  #     volumes:
-  #       - /var/run/docker.sock:/var/run/docker.sock:ro
-  #       - /sys:/host/sys:ro
-  #       - /proc:/host/proc:ro
-  #       - /etc:/host/etc:ro
-  #       - ./telegraf.conf:/etc/telegraf/telegraf.conf:ro
-  #       - /data/zp01:/data/zp01
-  #       - /data/zp02:/data/zp02
-  #       - /data/zp03:/data/zp03
-  #       - /:/host/root:ro
-  speedtest:
-    image: barrycarey/speedtest-for-influxdb-and-grafana
-    container_name: speedtest
+  # speedtest:
+  #   image: barrycarey/speedtest-for-influxdb-and-grafana
+  #   container_name: speedtest
+  #   hostname: homeserver
+  #   volumes:
+  #     - ./config.ini:/speedtest/config.ini
+  #   # restart: always
+
+  telegraf:
+    image: telegraf:latest
+    container_name: telegraf
     hostname: homeserver
+    privileged: true
+    # restart: unless-stopped
+    links:
+      - influxdb
+    environment:
+      HOST_PROC: /host/proc
+      HOST_SYS: /host/sys
+      HOST_ETC: /host/etc
     volumes:
-      - ./config.ini:/speedtest/config.ini
-    # restart: always
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      # - ./telegraf.conf:/etc/telegraf/telegraf.conf:ro
+      # - /sys:/host/sys:ro
+      # - /proc:/host/proc:ro
+      # - /etc:/host/etc:ro
+      # - /data/zp01:/data/zp01
+      # - /data/zp02:/data/zp02
+      # - /data/zp03:/data/zp03
+      # - /:/host/root:ro
 
   influxdb:
     # image: influxdb:2.3
